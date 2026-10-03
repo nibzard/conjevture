@@ -1,0 +1,51 @@
+{
+  "id": "b979ffc1-6ef2-4c9f-9ad9-4f0cb6a558df",
+  "shiftId": "first-watch",
+  "reportId": "lift",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:49.858Z",
+  "requestId": "22615baf-1963-47b7-b045-91d78547460e",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.05
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.06
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_0",
+        "confidence": 1,
+        "probabilities": {
+          "world_1": 0,
+          "world_2": 0,
+          "world_0": 1,
+          "world_3": 0
+        }
+      }
+    }
+  },
+  "text": "Yesterday the lift was completely dead. They replaced the contactor; it has run every load today without a hitch.",
+  "custom": false
+}

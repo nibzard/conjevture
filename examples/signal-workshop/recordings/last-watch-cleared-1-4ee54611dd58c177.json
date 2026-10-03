@@ -1,0 +1,66 @@
+{
+  "id": "9169d854-a7ea-4926-8a61-1ebc30b48f80",
+  "shiftId": "last-watch",
+  "reportId": "cleared",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:54.855Z",
+  "requestId": "d8e37842-9def-468a-94ce-e24e9f6aef09",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    },
+    {
+      "id": "C",
+      "label": "Repair verified",
+      "question": "Has a lasting repair of the current fault been verified?",
+      "yes": "A repair is complete and has passed a sustained operation check.",
+      "no": "A restart, temporary workaround, hope, or unverified claim is not a verified repair."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.06
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.09
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_4",
+        "confidence": 0.96,
+        "probabilities": {
+          "world_1": 0,
+          "world_2": 0,
+          "world_4": 0.97,
+          "world_3": 0,
+          "world_6": 0.03,
+          "world_5": 0,
+          "world_0": 0,
+          "world_7": 0
+        }
+      }
+    }
+  },
+  "text": "The fault was getting worse this afternoon. The worn part is now replaced, the sustained load test passed, and engineering has signed off the lasting repair.\nInspection: The repair record is signed. Sustained load passed after replacement of the worn part.",
+  "custom": false
+}

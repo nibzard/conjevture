@@ -6,5 +6,6 @@
     "declaration": false,
     "types": ["node"]
   },
-  "include": ["src/**/*.ts", "test/**/*.ts", "examples/**/*.ts"]
+  "include": ["src/**/*.ts", "test/**/*.ts", "examples/**/*.ts"],
+  "exclude": ["examples/signal-workshop/main.ts", "examples/signal-workshop/tutorial.ts", "examples/signal-workshop/board.ts"]
 }

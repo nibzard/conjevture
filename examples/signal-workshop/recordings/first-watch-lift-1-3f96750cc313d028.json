@@ -1,0 +1,51 @@
+{
+  "id": "163e0056-af18-4126-bdea-705782eb3ef2",
+  "shiftId": "first-watch",
+  "reportId": "lift",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:49.921Z",
+  "requestId": "e5e5b16b-e7f8-4e15-9ac6-bc18f1099694",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_0",
+        "confidence": 1,
+        "probabilities": {
+          "world_3": 0,
+          "world_1": 0,
+          "world_0": 1,
+          "world_2": 0
+        }
+      }
+    }
+  },
+  "text": "Yesterday the lift was completely dead. They replaced the contactor; it has run every load today without a hitch.\nInspection: Every load test today passed. The contactor replacement is verified.",
+  "custom": false
+}

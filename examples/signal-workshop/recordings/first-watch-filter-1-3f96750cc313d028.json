@@ -1,0 +1,51 @@
+{
+  "id": "b1bfb973-47ca-49c5-ab9a-04d3a5033222",
+  "shiftId": "first-watch",
+  "reportId": "filter",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:50.159Z",
+  "requestId": "12db308e-d7aa-4567-befc-08b8c2418b66",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.28
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_1",
+        "confidence": 0.99,
+        "probabilities": {
+          "world_1": 0.99,
+          "world_3": 0.01,
+          "world_0": 0,
+          "world_2": 0
+        }
+      }
+    }
+  },
+  "text": "The fan sounds normal. Nothing gets through the filter, though. The test strip at the outlet doesn't move.\nInspection: The outlet has zero airflow. The fan turning does not mean the filter works.",
+  "custom": false
+}

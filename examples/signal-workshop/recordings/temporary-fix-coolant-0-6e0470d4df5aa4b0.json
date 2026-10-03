@@ -1,0 +1,66 @@
+{
+  "id": "a6cf121a-5a7a-4203-9bb1-e4dbb65f7953",
+  "shiftId": "temporary-fix",
+  "reportId": "coolant",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:50.434Z",
+  "requestId": "01dfec2f-cf6f-4f48-9402-b1706dbbdaea",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    },
+    {
+      "id": "C",
+      "label": "Repair verified",
+      "question": "Has anyone got the equipment running again?",
+      "yes": "Any successful restart counts as a fix.",
+      "no": "Nobody has got it running."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.73
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.85
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_3",
+        "confidence": 0.26,
+        "probabilities": {
+          "world_1": 0,
+          "world_4": 0.01,
+          "world_0": 0,
+          "world_5": 0,
+          "world_6": 0.31,
+          "world_3": 0.36,
+          "world_7": 0.2,
+          "world_2": 0.12
+        }
+      }
+    }
+  },
+  "text": "It's running again after the third reset. Pressure is dropping faster each time. We haven't replaced anything or checked the repair.",
+  "custom": false
+}

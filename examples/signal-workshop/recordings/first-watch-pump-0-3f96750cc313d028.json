@@ -1,0 +1,51 @@
+{
+  "id": "45954ca8-7fa7-495d-bee8-52abf1c8f2f0",
+  "shiftId": "first-watch",
+  "reportId": "pump",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:49.682Z",
+  "requestId": "bdcdb29e-ddd5-4157-b204-414daf02007c",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.65
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_2",
+        "confidence": 0.78,
+        "probabilities": {
+          "world_2": 0.83,
+          "world_0": 0.01,
+          "world_3": 0.16,
+          "world_1": 0
+        }
+      }
+    }
+  },
+  "text": "Another reset got the pump turning. But the vibration has climbed all evening. I would not call this a recovery.",
+  "custom": false
+}

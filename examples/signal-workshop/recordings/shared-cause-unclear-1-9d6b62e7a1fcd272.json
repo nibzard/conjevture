@@ -1,0 +1,51 @@
+{
+  "id": "339b7339-ace2-4781-a945-8e923fb5820c",
+  "shiftId": "shared-cause",
+  "reportId": "unclear",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:53.333Z",
+  "requestId": "c0df9b4b-74d6-4419-bde4-78efe20ef119",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Main unit down",
+      "question": "Is the main unit currently unable to operate?",
+      "yes": "The main unit cannot do its job now.",
+      "no": "The main unit is available now."
+    },
+    {
+      "id": "B",
+      "label": "No backup",
+      "question": "Is the backup currently unavailable?",
+      "yes": "No functioning backup is available now.",
+      "no": "A working backup is available now."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.78
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_3",
+        "confidence": 0.99,
+        "probabilities": {
+          "world_1": 0.01,
+          "world_2": 0,
+          "world_0": 0,
+          "world_3": 0.99
+        }
+      }
+    }
+  },
+  "text": "The panel went dark. It may be only the display feed, or the shared feed for both units. We cannot tell from here whether either unit still works.\nInspection: Both units are stopped. The display was dark because the shared power feed failed.",
+  "custom": false
+}

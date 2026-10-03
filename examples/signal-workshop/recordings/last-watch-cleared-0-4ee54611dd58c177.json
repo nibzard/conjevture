@@ -1,0 +1,66 @@
+{
+  "id": "352d7182-cb3d-4ac3-8a00-c79f3dd36661",
+  "shiftId": "last-watch",
+  "reportId": "cleared",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:54.844Z",
+  "requestId": "0a2f561e-e59a-4935-80c1-6c69940f08e4",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    },
+    {
+      "id": "C",
+      "label": "Repair verified",
+      "question": "Has a lasting repair of the current fault been verified?",
+      "yes": "A repair is complete and has passed a sustained operation check.",
+      "no": "A restart, temporary workaround, hope, or unverified claim is not a verified repair."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.06
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.09
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_4",
+        "confidence": 0.96,
+        "probabilities": {
+          "world_0": 0,
+          "world_3": 0,
+          "world_7": 0,
+          "world_5": 0,
+          "world_4": 0.97,
+          "world_1": 0,
+          "world_2": 0,
+          "world_6": 0.03
+        }
+      }
+    }
+  },
+  "text": "The fault was getting worse this afternoon. The worn part is now replaced, the sustained load test passed, and engineering has signed off the lasting repair.",
+  "custom": false
+}

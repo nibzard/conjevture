@@ -1,0 +1,51 @@
+{
+  "id": "87bfa273-3b4c-4e0d-8ab8-8c02451faba5",
+  "shiftId": "shared-cause",
+  "reportId": "reserve",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:53.074Z",
+  "requestId": "53f9b614-d13b-4c08-92d4-60cc195557f6",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Main unit down",
+      "question": "Is the main unit currently unable to operate?",
+      "yes": "The main unit cannot do its job now.",
+      "no": "The main unit is available now."
+    },
+    {
+      "id": "B",
+      "label": "No backup",
+      "question": "Is the backup currently unavailable?",
+      "yes": "No functioning backup is available now.",
+      "no": "A working backup is available now."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.02
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_1",
+        "confidence": 1,
+        "probabilities": {
+          "world_2": 0,
+          "world_0": 0,
+          "world_1": 1,
+          "world_3": 0
+        }
+      }
+    }
+  },
+  "text": "The main compressor seized. The independent reserve is online at full output and can carry the load until morning.\nInspection: The reserve delivers full rated output and is available for the whole shift.",
+  "custom": false
+}

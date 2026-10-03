@@ -1,0 +1,66 @@
+{
+  "id": "47d62775-91cc-49e1-85f1-43095b65f61c",
+  "shiftId": "temporary-fix",
+  "reportId": "seal",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:51.024Z",
+  "requestId": "5a75bffc-5f78-47ae-ada5-e34204bc708f",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    },
+    {
+      "id": "C",
+      "label": "Repair verified",
+      "question": "Has a lasting repair of the current fault been verified?",
+      "yes": "A repair is complete and has passed a sustained operation check.",
+      "no": "A restart, temporary workaround, hope, or unverified claim is not a verified repair."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.04
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.87
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_4",
+        "confidence": 1,
+        "probabilities": {
+          "world_1": 0,
+          "world_7": 0,
+          "world_3": 0,
+          "world_4": 1,
+          "world_5": 0,
+          "world_2": 0,
+          "world_6": 0,
+          "world_0": 0
+        }
+      }
+    }
+  },
+  "text": "Earlier the seal couldn't hold pressure. The damaged ring is replaced, and the two-hour leak test passed. Normal service is restored.",
+  "custom": false
+}

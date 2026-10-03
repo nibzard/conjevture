@@ -1,0 +1,66 @@
+{
+  "id": "07627705-de6c-44c7-bf53-d192f539e129",
+  "shiftId": "last-watch",
+  "reportId": "rumor",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:54.346Z",
+  "requestId": "b8e78be8-20fc-4405-a39b-93ba0bea0929",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    },
+    {
+      "id": "C",
+      "label": "Repair verified",
+      "question": "Has a lasting repair of the current fault been verified?",
+      "yes": "A repair is complete and has passed a sustained operation check.",
+      "no": "A restart, temporary workaround, hope, or unverified claim is not a verified repair."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.42
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.24
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.05
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_0",
+        "confidence": 0.88,
+        "probabilities": {
+          "world_3": 0.01,
+          "world_5": 0,
+          "world_1": 0.08,
+          "world_2": 0.02,
+          "world_6": 0,
+          "world_7": 0,
+          "world_0": 0.89,
+          "world_4": 0
+        }
+      }
+    }
+  },
+  "text": "Someone said the unit is 'sorted'. Nobody on this channel knows whether that meant a reset or a tested repair. It was overheating earlier.",
+  "custom": false
+}

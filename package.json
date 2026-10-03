@@ -23,13 +23,23 @@
       "default": "./dist/jev.js"
     }
   },
-  "files": ["dist", "docs", "README.md", "LICENSE"],
-  "engines": { "node": ">=22" },
+  "files": [
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "test": "npm run build && tsc -p tsconfig.test.json && node --test .test-build/test/*.test.js",
+    "test": "npm run build:game && tsc -p tsconfig.test.json && node --test .test-build/test/*.test.js test/*.test.mjs",
     "example": "npm run build && tsc -p tsconfig.test.json && node .test-build/examples/support-ticket.js",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "build:game": "npm run build && tsc -p examples/signal-workshop/tsconfig.json && node examples/signal-workshop/build.mjs",
+    "game": "npm run build:game && node examples/signal-workshop/serve.mjs",
+    "record:game": "npm run build:game && node examples/signal-workshop/capture-replays.mjs"
   },
   "devDependencies": {
     "@types/node": "^22.20.5",

@@ -1,0 +1,99 @@
+{
+  "id": "65b28d19-145b-43b2-94d3-c484c6d915c0",
+  "shiftId": "temporary-fix",
+  "reportId": "coolant",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:20:40.961Z",
+  "requestId": "73824fd8-a241-44de-bb5b-a0c4fd0ab57f",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    },
+    {
+      "id": "C",
+      "label": "Repair verified",
+      "question": "Has anyone got the equipment running again?",
+      "yes": "Any successful restart counts as a fix.",
+      "no": "Nobody has got it running."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.86
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.73
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_3",
+        "confidence": 0.73,
+        "probabilities": {
+          "world_5": 0,
+          "world_6": 0.04,
+          "world_3": 0.78,
+          "world_7": 0.06,
+          "world_0": 0,
+          "world_1": 0,
+          "world_4": 0,
+          "world_2": 0.12
+        }
+      }
+    }
+  },
+  "rawResponse": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.86
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.73
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_3",
+        "confidence": 0.73,
+        "probabilities": {
+          "world_5": 0,
+          "world_6": 0.04,
+          "world_3": 0.78,
+          "world_7": 0.06,
+          "world_0": 0,
+          "world_1": 0,
+          "world_4": 0,
+          "world_2": 0.12
+        }
+      }
+    }
+  },
+  "adjustments": [],
+  "text": "It's running again after the third reset. Pressure is dropping faster each time. We haven't replaced anything or checked the repair.\nInspection: No component was repaired. Pressure continues to fall. The restart was temporary.",
+  "custom": false
+}

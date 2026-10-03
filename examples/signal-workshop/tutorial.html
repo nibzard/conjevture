@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Night Shift · Gate training</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230c6587'/%3E%3Ctext x='20' y='28' text-anchor='middle' fill='white' font-size='28'%3E∧%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./tutorial.css">
+  <script type="importmap">{"imports":{"conjevture":"../../src/index.js","conjevture/jev":"../../src/jev.js"}}</script>
+  <script type="module" src="./tutorial.js"></script>
+</head>
+<body>
+  <header class="app-header">
+    <a class="brand" href="./" aria-label="Night Shift home"><span class="brand-mark" aria-hidden="true">∧</span><span>Gate training<small>Return to Night Shift</small></span></a>
+    <nav class="mode-switch" aria-label="Game mode">
+      <button data-mode="build" aria-pressed="true">Build a circuit</button>
+      <button data-mode="decode" aria-pressed="false">Read a circuit</button>
+    </nav>
+    <button id="help-button" class="text-button">How to play <span aria-hidden="true">↗</span></button>
+  </header>
+  <main>
+    <aside class="level-sidebar" aria-label="Levels">
+      <div class="journey-heading"><h2>Your journey</h2><span id="progress-count">0 / 2</span></div>
+      <div class="progress-track"><span id="progress-fill"></span></div>
+      <nav id="level-list" aria-label="Choose a level"></nav>
+      <div class="sidebar-note"><span aria-hidden="true">↳</span><p>Small pieces.<br>Surprising possibilities.</p></div>
+    </aside>
+    <div class="workspace">
+      <section class="brief" aria-labelledby="level-title">
+        <div class="brief-heading"><div><p class="level-counter" id="level-counter"></p><h1 id="level-title"></h1></div><span class="lesson-tag" id="lesson-tag"></span></div>
+        <blockquote id="sentence"></blockquote>
+        <div class="mission-footer"><span id="mission-goal"></span><button class="text-button" id="hint-button" aria-expanded="false" aria-controls="hint">Show a hint</button></div>
+        <p id="hint" class="hint" hidden></p>
+      </section>
+      <section class="workbench" aria-labelledby="workbench-title">
+        <div class="workbench-toolbar"><h2 id="workbench-title">Your workbench</h2><div class="toolbar-actions"><span id="gate-count"></span><button id="undo-button" class="text-button" disabled>Undo</button><button id="reset-button" class="text-button">Reset</button></div></div>
+        <div id="inventory" class="inventory" aria-label="Available gates"></div>
+        <p class="board-scroll-hint">Scroll sideways to explore. Use Connections below to wire gates.</p>
+        <div class="board-scroll" tabindex="0" role="region" aria-label="Circuit board. Scroll horizontally on small screens.">
+          <div id="board" class="board"><svg id="wires" viewBox="0 0 1000 440" aria-hidden="true"></svg><div id="nodes"></div><div id="board-tip" class="board-tip"></div></div>
+        </div>
+        <div class="connection-bar"><span class="connection-dot" aria-hidden="true"></span><p id="connection-help" role="status">Add a gate to begin. Then connect an output dot to an input dot.</p><button class="text-button" id="cancel-wire" hidden>Cancel</button></div>
+        <details id="connection-editor" class="connection-editor"><summary>Connections · keyboard and touch controls</summary><div id="connection-fields"></div></details>
+      </section>
+      <section id="decode-panel" class="decode-panel" hidden aria-labelledby="decode-title"><h2 id="decode-title">What does this circuit mean?</h2><p>Trace the wires, then choose the rule and the probability of the outcome.</p><fieldset id="sentence-options"><legend class="sr-only">Choose a rule</legend></fieldset><label class="probability-choice" for="probability-answer">Probability of the outcome <select id="probability-answer"><option value="">Choose a probability</option></select></label></section>
+      <section class="check-bar" aria-label="Check your solution"><div><p class="preview-label">Probability of the outcome</p><strong id="live-probability">—</strong><span id="preview-caption">Complete the connections to see a result.</span></div><button id="check-button" class="primary-button">Test circuit <span aria-hidden="true">↗</span></button></section>
+      <section id="result" class="result" hidden aria-labelledby="result-title"><div class="result-heading"><h2 id="result-title"></h2><span id="result-score"></span></div><p id="result-message"></p><code id="result-expression"></code><div class="table-scroll" id="truth-table"></div><button id="next-button" class="primary-button" hidden>Next level <span aria-hidden="true">→</span></button></section>
+      <footer class="workspace-footer"><span>Boolean rules. Exact probabilities.</span><a href="./">Return to the Night Shift campaign →</a></footer>
+    </div>
+    <aside class="signal-sidebar" aria-labelledby="signals-title"><div class="signal-heading"><h2 id="signals-title">The signals</h2><span class="fixture-label">Jev fixtures</span></div><p class="sidebar-intro">Each input is a statement that can be true or false.</p><div id="signals"></div><section class="model-note"><h3 id="model-title"></h3><p id="model-description"></p><div id="joint-table"></div><details><summary>Where the numbers come from</summary><p>These are illustrative Jev answer fixtures, not live predictions. Conjevture converts them and evaluates your Boolean rule exactly.</p><p id="model-api"></p></details></section><section class="gate-guide"><h3 id="guide-title">Inside a gate</h3><div id="gate-guide"></div></section></aside>
+  </main>
+  <dialog id="help-dialog" aria-labelledby="help-title"><div class="dialog-heading"><h2 id="help-title">Make a little sense.</h2><button id="close-help" class="text-button" autofocus>Close ×</button></div><p>Turn words into working logic. Each level gives you a task and a fixed set of gates.</p><ol><li>Add a gate from the tray.</li><li>Select an output dot, then an input dot to connect them.</li><li>Connect the last gate to the outcome.</li><li>Select <strong>Test circuit</strong> to check every possible input combination.</li></ol><p>Drag a gate by its heading to move it. Use its × button to return it to the tray. Select a connected input to remove its wire.</p><p>For keyboard or touch input, open <strong>Connections</strong> and choose each socket’s source. Press Escape to cancel a wire.</p><p><strong>Read a circuit</strong> reverses the puzzle. Study a circuit, choose its meaning, and calculate its probability. Practice AND and OR in two short lessons.</p><p class="help-footnote">Progress and circuits stay in this browser. No account or model credentials are needed.</p></dialog>
+  <noscript>This game needs JavaScript. Enable JavaScript and reload the page.</noscript>
+</body>
+</html>

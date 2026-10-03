@@ -26,6 +26,24 @@ Assumption: For this example, resolution is independent of urgency and repetitio
 
 No credentials are needed. The example uses illustrative probabilities.
 
+## Play Night Shift
+
+Build a system that interprets messy reports and decides when to dispatch repair drones.
+The [browser game](examples/signal-workshop/README.md) combines live TypeSafe Jev judgments
+with Conjevture circuits, explicit probability models, and independently scored outcomes.
+
+```sh
+npm run game
+```
+
+Open <http://127.0.0.1:4173>. The game includes two gate lessons and six campaign shifts.
+Players edit judgment questions, wire gates, inspect uncertain evidence, and investigate failures.
+It supports phones, touch input, and keyboard controls.
+
+Set `TYPESAFE_API_KEY` in the server environment for live calls and custom reports.
+Without a key, play with the included recorded Jev responses. Replays are labeled and
+require matching questions and evidence. See the [design and variations](examples/signal-workshop/CONCEPTS.md).
+
 ## A first circuit
 
 Create a variable, give it a probability, and evaluate a rule:
@@ -91,9 +109,11 @@ npm run example
 npm pack --dry-run
 ```
 
-`npm test` builds the public exports, checks TypeScript contracts, and runs 23 tests.
+`npm test` builds the library and game, checks TypeScript contracts, and runs the test suite.
 Tests cover logical identities, correlated variables, validation, and Jev converters.
-They use fixtures and require no credentials.
+Game tests cover gate inventories, invalid connections, rule equivalence, all campaign shifts,
+recorded evidence, independent scoring, and server progression. Tests require no credentials
+and make no model requests.
 
 After the test command, run the categorical example with:
 

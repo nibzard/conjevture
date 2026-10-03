@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Night Shift · Words into working systems</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230c6587'/%3E%3Ctext x='20' y='28' text-anchor='middle' fill='white' font-size='28'%3E∧%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "conjevture": "../../src/index.js",
+          "conjevture/jev": "../../src/jev.js"
+        }
+      }
+    </script>
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <header>
+      <a href="./" class="brand"
+        ><span aria-hidden="true">∧</span>
+        <div>Night Shift<small>Words into working systems</small></div></a
+      >
+      <nav aria-label="Game resources">
+        <a href="./tutorial.html">Gate training</a
+        ><button id="help">How to play</button>
+      </nav>
+      <span id="service" class="status">Connecting…</span>
+    </header>
+    <div id="notice" role="status" aria-live="polite" hidden></div>
+    <main id="app"><p class="loading">Opening the station log…</p></main>
+    <dialog id="help-dialog" aria-labelledby="help-title">
+      <button id="close-help" class="close">Close ×</button>
+      <h2 id="help-title">Build a system. Take the watch.</h2>
+      <p>
+        You operate a remote station. Three reports arrive each shift. You have
+        two drones and two inspections.
+      </p>
+      <ol>
+        <li>Define what each judgment should mean.</li>
+        <li>Wire the supplied gates into the dispatch policy.</li>
+        <li>Evaluate a report with live Jev or a recorded response.</li>
+        <li>Inspect the probability and its model assumptions.</li>
+        <li>
+          Run the system. The thresholds choose dispatch, wait, or manual
+          review.
+        </li>
+        <li>
+          Score at least 9 points and solve the incident investigation to
+          advance.
+        </li>
+      </ol>
+      <p>
+        A correct decision earns 4 points. An unnecessary dispatch loses 3; a
+        missed fault loses 5. Manual review earns 1. Each inspection costs 1
+        point on that report. Reviewing everything cannot pass a shift.
+      </p>
+      <p>
+        Jev interprets your questions. Conjevture evaluates the Boolean rule.
+        Scenarios have independently authored outcomes; Jev never receives the
+        answer key.
+      </p>
+      <p>
+        Recordings are actual Jev responses to the exact saved questions and
+        report. Editing questions or trying your own text requires live
+        evaluation, unless a matching recording exists.
+      </p>
+      <p>
+        On a phone, use the connection selectors below the board. On desktop,
+        select an output dot and then an input dot. Drag a gate's heading to
+        move it. Escape cancels a pending connection.
+      </p>
+    </dialog>
+    <noscript>Enable JavaScript to play Night Shift.</noscript>
+  </body>
+</html>

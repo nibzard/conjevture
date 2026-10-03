@@ -15,3 +15,9 @@ coverage/
 # Operating system files
 .DS_Store
 Thumbs.db
+
+# Browser game build
+.game-build/
+
+# Private game sessions (never serve or commit)
+.night-shift/

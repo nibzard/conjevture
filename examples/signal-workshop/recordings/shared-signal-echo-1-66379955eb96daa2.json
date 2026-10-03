@@ -1,0 +1,29 @@
+{
+  "id": "58c2d20f-8431-4136-a1f8-2271883ae9fe",
+  "shiftId": "shared-signal",
+  "reportId": "echo",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:52.031Z",
+  "requestId": "c577933a-4819-42f9-8287-76a42832b15c",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Current fault",
+      "question": "Does the equipment currently have a fault requiring repair?",
+      "yes": "The report describes a current operational defect.",
+      "no": "The equipment is operating normally; repetition alone is not evidence of a fault."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.97
+      }
+    }
+  },
+  "text": "East hatch won't latch. Maintenance repeated the same operator message on channel two. There is still only one report, and the hatch is still open.\nInspection: A fresh inspection finds the latch broken and the hatch unable to close.",
+  "custom": false
+}

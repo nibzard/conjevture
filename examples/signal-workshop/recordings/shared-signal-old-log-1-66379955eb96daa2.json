@@ -1,0 +1,29 @@
+{
+  "id": "755ef9f5-cdca-4e62-b3df-d6078f930109",
+  "shiftId": "shared-signal",
+  "reportId": "old-log",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:52.315Z",
+  "requestId": "0af12241-312e-455f-863c-c8c6c505c58f",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Current fault",
+      "question": "Does the equipment currently have a fault requiring repair?",
+      "yes": "The report describes a current operational defect.",
+      "no": "The equipment is operating normally; repetition alone is not evidence of a fault."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.05
+      }
+    }
+  },
+  "text": "Forwarded twice: 'motor failed Tuesday'. Current update: new motor fitted Wednesday, all checks passed; it is working normally.\nInspection: The replacement motor is running normally. The Tuesday failure is historical.",
+  "custom": false
+}

@@ -1,0 +1,51 @@
+{
+  "id": "45cfad0a-024b-4519-aeeb-9ba4910afe1b",
+  "shiftId": "shared-cause",
+  "reportId": "feed",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:52.834Z",
+  "requestId": "e6665872-27bf-4d0d-acdc-39800e280d52",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Main unit down",
+      "question": "Is the main unit currently unable to operate?",
+      "yes": "The main unit cannot do its job now.",
+      "no": "The main unit is available now."
+    },
+    {
+      "id": "B",
+      "label": "No backup",
+      "question": "Is the backup currently unavailable?",
+      "yes": "No functioning backup is available now.",
+      "no": "A working backup is available now."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_3",
+        "confidence": 0.99,
+        "probabilities": {
+          "world_3": 1,
+          "world_1": 0,
+          "world_2": 0,
+          "world_0": 0
+        }
+      }
+    }
+  },
+  "text": "The feed to this rack is dead. Main and backup both use it; neither unit has power. Switching to backup changes nothing.",
+  "custom": false
+}

@@ -1,0 +1,42 @@
+{
+  "id": "7f0b503b-4a06-4c56-a4fb-3f8ef1a5bd66",
+  "shiftId": "status-desk",
+  "reportId": "green",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:54.070Z",
+  "requestId": "2031bc32-3ded-4044-9bbd-d9a04b7ac9f4",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Failed",
+      "question": "Is the equipment failed?",
+      "yes": "It cannot perform its intended job.",
+      "no": "It is not failed."
+    },
+    {
+      "id": "B",
+      "label": "Degraded",
+      "question": "Is the equipment degraded?",
+      "yes": "It works, but has a current defect or abnormal deterioration.",
+      "no": "It is failed or healthy."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "status": {
+        "type": "choice",
+        "choice": "healthy",
+        "confidence": 1,
+        "probabilities": {
+          "degraded": 0,
+          "failed": 0,
+          "healthy": 1
+        }
+      }
+    }
+  },
+  "text": "A failure warning was printed last week. Today the replacement unit passed every diagnostic and is operating normally.",
+  "custom": false
+}

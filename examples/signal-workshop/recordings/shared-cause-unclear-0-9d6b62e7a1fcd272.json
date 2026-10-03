@@ -1,0 +1,51 @@
+{
+  "id": "0f22765b-77bb-4002-8129-dcd388f41e52",
+  "shiftId": "shared-cause",
+  "reportId": "unclear",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:53.306Z",
+  "requestId": "9fe4649a-16ca-4256-aff3-bd10ca28cfde",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Main unit down",
+      "question": "Is the main unit currently unable to operate?",
+      "yes": "The main unit cannot do its job now.",
+      "no": "The main unit is available now."
+    },
+    {
+      "id": "B",
+      "label": "No backup",
+      "question": "Is the backup currently unavailable?",
+      "yes": "No functioning backup is available now.",
+      "no": "A working backup is available now."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.58
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.54
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_3",
+        "confidence": 0.89,
+        "probabilities": {
+          "world_3": 0.92,
+          "world_1": 0.05,
+          "world_0": 0.02,
+          "world_2": 0.01
+        }
+      }
+    }
+  },
+  "text": "The panel went dark. It may be only the display feed, or the shared feed for both units. We cannot tell from here whether either unit still works.",
+  "custom": false
+}

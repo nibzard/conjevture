@@ -1,0 +1,29 @@
+{
+  "id": "2206ed59-3ea2-4462-9561-dcfaac52e270",
+  "shiftId": "shared-signal",
+  "reportId": "bearing",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:52.553Z",
+  "requestId": "3446e32e-204c-4970-b8b5-994e3b574239",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Current fault",
+      "question": "Does the equipment currently have a fault requiring repair?",
+      "yes": "The report describes a current operational defect.",
+      "no": "The equipment is operating normally; repetition alone is not evidence of a fault."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.95
+      }
+    }
+  },
+  "text": "One mechanic heard the bearing grinding. The recording has been replayed on two channels. Nobody has repaired it and grinding continues.",
+  "custom": false
+}

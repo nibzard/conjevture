@@ -1,0 +1,42 @@
+{
+  "id": "65039b1a-1ab6-4250-a542-f4550a44723f",
+  "shiftId": "status-desk",
+  "reportId": "antenna",
+  "revision": 1,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:53.574Z",
+  "requestId": "c253eeec-587e-4cdc-bdf5-6ee9d4bada2a",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Failed",
+      "question": "Is the equipment failed?",
+      "yes": "It cannot perform its intended job.",
+      "no": "It is not failed."
+    },
+    {
+      "id": "B",
+      "label": "Degraded",
+      "question": "Is the equipment degraded?",
+      "yes": "It works, but has a current defect or abnormal deterioration.",
+      "no": "It is failed or healthy."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "status": {
+        "type": "choice",
+        "choice": "degraded",
+        "confidence": 1,
+        "probabilities": {
+          "failed": 0,
+          "healthy": 0,
+          "degraded": 1
+        }
+      }
+    }
+  },
+  "text": "It still tracks targets, but its drive is shuddering and the tracking error is increasing. It isn't fully failed yet.\nInspection: It still tracks, but the bearing defect is worsening. Current state: degraded.",
+  "custom": false
+}

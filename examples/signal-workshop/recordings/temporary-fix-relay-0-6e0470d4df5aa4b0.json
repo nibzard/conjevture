@@ -1,0 +1,66 @@
+{
+  "id": "534ff8d8-362a-419b-832f-973bdbccf255",
+  "shiftId": "temporary-fix",
+  "reportId": "relay",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:51.510Z",
+  "requestId": "2a125b7a-8945-4d25-817b-d5fa3abe2b90",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Unusable now",
+      "question": "Is the equipment currently unable to perform its intended job?",
+      "yes": "The current fault prevents normal operation.",
+      "no": "It operates normally, or only a past fault is described."
+    },
+    {
+      "id": "B",
+      "label": "Getting worse",
+      "question": "Is the current equipment fault deteriorating?",
+      "yes": "The report describes a worsening fault, even if equipment still operates.",
+      "no": "There is no current deterioration, or the problem is only historical."
+    },
+    {
+      "id": "C",
+      "label": "Repair verified",
+      "question": "Has anyone got the equipment running again?",
+      "yes": "Any successful restart counts as a fix.",
+      "no": "Nobody has got it running."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "A": {
+        "type": "noul",
+        "noul": 0.89
+      },
+      "B": {
+        "type": "noul",
+        "noul": 0.23
+      },
+      "C": {
+        "type": "noul",
+        "noul": 0.76
+      },
+      "joint": {
+        "type": "choice",
+        "choice": "world_1",
+        "confidence": 0.49,
+        "probabilities": {
+          "world_1": 0.55,
+          "world_2": 0,
+          "world_4": 0.05,
+          "world_3": 0.06,
+          "world_6": 0,
+          "world_5": 0.25,
+          "world_0": 0.03,
+          "world_7": 0.06
+        }
+      }
+    }
+  },
+  "text": "We've bridged the relay so the lights come on. The actual controller is still dead and the bypass is not rated for operation.",
+  "custom": false
+}

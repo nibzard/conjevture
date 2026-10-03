@@ -1,0 +1,42 @@
+{
+  "id": "04a90064-8791-4e6b-9e56-ed4c9601d8b5",
+  "shiftId": "status-desk",
+  "reportId": "charger",
+  "revision": 0,
+  "source": "live",
+  "recordedAt": "2026-10-03T16:13:53.857Z",
+  "requestId": "a8d80661-6cc9-4c90-9c35-e6e9e5783d5d",
+  "questions": [
+    {
+      "id": "A",
+      "label": "Failed",
+      "question": "Is the equipment failed?",
+      "yes": "It cannot perform its intended job.",
+      "no": "It is not failed."
+    },
+    {
+      "id": "B",
+      "label": "Degraded",
+      "question": "Is the equipment degraded?",
+      "yes": "It works, but has a current defect or abnormal deterioration.",
+      "no": "It is failed or healthy."
+    }
+  ],
+  "response": {
+    "model": "jev-1.13.0",
+    "answers": {
+      "status": {
+        "type": "choice",
+        "choice": "failed",
+        "confidence": 1,
+        "probabilities": {
+          "failed": 1,
+          "degraded": 0,
+          "healthy": 0
+        }
+      }
+    }
+  },
+  "text": "The indicator is on but none of the sockets supply power. It cannot charge anything, even after a reset.",
+  "custom": false
+}
