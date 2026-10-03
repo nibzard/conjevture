@@ -1,0 +1,17 @@
+# Dependencies and generated output
+node_modules/
+dist/
+.test-build/
+coverage/
+*.tsbuildinfo
+*.tgz
+
+# Local credentials and logs
+.env
+.env.*
+!.env.example
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db

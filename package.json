@@ -1,0 +1,38 @@
+{
+  "name": "conjevture",
+  "version": "0.1.0",
+  "description": "Exact Boolean logic over typed uncertain variables and explicit probability models.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nibzard/conjevture.git"
+  },
+  "homepage": "https://github.com/nibzard/conjevture#readme",
+  "bugs": {
+    "url": "https://github.com/nibzard/conjevture/issues"
+  },
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./jev": {
+      "types": "./dist/jev.d.ts",
+      "default": "./dist/jev.js"
+    }
+  },
+  "files": ["dist", "docs", "README.md", "LICENSE"],
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && tsc -p tsconfig.test.json && node --test .test-build/test/*.test.js",
+    "example": "npm run build && tsc -p tsconfig.test.json && node .test-build/examples/support-ticket.js",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^7.0.2"
+  }
+}
