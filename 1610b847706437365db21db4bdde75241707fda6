@@ -1,0 +1,29 @@
+# ADR: Preserve dependence through symbolic expressions
+
+## Status
+Accepted
+
+## Context
+Conjevture combines learned judgments with exact Boolean rules. Reusing
+an uncertain proposition must preserve its identity and dependence.
+
+## Decision
+Keep scoped variable handles and immutable symbolic expressions. Evaluate
+small explicit joint distributions by enumerating possible worlds.
+Require a stated reason to combine disjoint groups as independent.
+Keep Jev response conversion separate from the dependency-free core.
+
+## Alternatives considered
+- Combining scalar probabilities at each gate loses shared identity.
+- Compiled inference adds machinery beyond the scope of version 0.1.
+
+## Consequences
+Enumeration remains inspectable and is limited to 65,536 worlds by default.
+The caller supplies dependence information and selects action policies.
+The initial public repository includes an MIT license and a short README
+that links to the complete guide.
+
+## Validation
+All 23 runtime tests and TypeScript contracts pass after a clean install.
+Both examples return the expected probabilities. Documentation links,
+package contents, and staged whitespace checks pass.
