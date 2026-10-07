@@ -1,0 +1,85 @@
+name: Python
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    name: Test Python ${{ matrix.python-version }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+        include:
+          - os: macos-latest
+            python-version: "3.13"
+          - os: windows-latest
+            python-version: "3.13"
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install package with development dependencies
+        run: python -m pip install -e ".[dev]"
+      - name: Check formatting
+        run: ruff format --check .
+      - name: Lint
+        run: ruff check .
+      - name: Type-check
+        run: mypy
+      - name: Test
+        run: pytest
+
+  package:
+    name: Build and verify the distribution
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build the wheel and source distribution
+        run: |
+          python -m pip install build
+          python -m build
+      - name: Install the wheel outside the repository
+        working-directory: ${{ runner.temp }}
+        run: |
+          python -m venv clean
+          clean/bin/python -m pip install "${{ github.workspace }}/python/dist/"conjevture-*.whl
+      - name: Verify exports, py.typed, license, and examples
+        working-directory: ${{ runner.temp }}
+        run: |
+          clean/bin/python -c "import conjevture, conjevture.jev; assert conjevture.__version__ == '0.1.0'"
+          clean/bin/python -c "import importlib.metadata as md; runtime = [r for r in md.requires('conjevture') or [] if 'extra ==' not in r]; assert not runtime, runtime"
+          clean/bin/python -c "import conjevture, pathlib; assert (pathlib.Path(conjevture.__file__).parent / 'py.typed').is_file()"
+          clean/bin/python -c "import importlib.metadata as md; files = [str(f) for f in md.files('conjevture') or []]; assert any('LICENSE' in f for f in files), files"
+          clean/bin/python "${{ github.workspace }}/python/examples/support_ticket.py"
+          clean/bin/python "${{ github.workspace }}/python/examples/routing.py"
+      - name: Verify tests from the source distribution
+        working-directory: ${{ runner.temp }}
+        run: |
+          mkdir source
+          tar -xzf "${{ github.workspace }}/python/dist/"conjevture-*.tar.gz -C source --strip-components=1
+          python3 -m venv source-check
+          source-check/bin/python3 -m pip install "./source[dev]"
+          cd source
+          ../source-check/bin/python3 -m pytest
+          ../source-check/bin/python3 -m mypy
+          ../source-check/bin/python3 -m ruff check .
+          ../source-check/bin/python3 -m ruff format --check .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: python/dist/*

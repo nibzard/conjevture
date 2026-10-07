@@ -21,3 +21,12 @@ Thumbs.db
 
 # Private game sessions (never serve or commit)
 .night-shift/
+
+# Python package
+python/.venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+python/build/

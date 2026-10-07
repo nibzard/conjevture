@@ -1,0 +1,383 @@
+{
+  "id": "validation",
+  "description": "Distribution, dependence, and world-limit validation.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    },
+    {
+      "id": "b",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "repeat"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "ab",
+      "kind": "joint",
+      "variables": [
+        "a",
+        "b"
+      ],
+      "rows": [
+        {
+          "values": [
+            false,
+            false
+          ],
+          "probability": 0.1
+        },
+        {
+          "values": [
+            true,
+            false
+          ],
+          "probability": 0.3
+        },
+        {
+          "values": [
+            false,
+            true
+          ],
+          "probability": 0.1
+        },
+        {
+          "values": [
+            true,
+            true
+          ],
+          "probability": 0.5
+        }
+      ]
+    },
+    {
+      "id": "neg",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": -0.1,
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "high",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 1.1,
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "two",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 2,
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "minusOne",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": -1,
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "noVariables",
+      "kind": "joint",
+      "variables": [],
+      "rows": [],
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "missingRow",
+      "kind": "joint",
+      "variables": [
+        "a"
+      ],
+      "rows": [
+        {
+          "values": [
+            true
+          ],
+          "probability": 1
+        }
+      ],
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "duplicateAssignment",
+      "kind": "joint",
+      "variables": [
+        "a"
+      ],
+      "rows": [
+        {
+          "values": [
+            true
+          ],
+          "probability": 0.5
+        },
+        {
+          "values": [
+            true
+          ],
+          "probability": 0.5
+        }
+      ],
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "wrongTotal",
+      "kind": "joint",
+      "variables": [
+        "a"
+      ],
+      "rows": [
+        {
+          "values": [
+            false
+          ],
+          "probability": 0.3
+        },
+        {
+          "values": [
+            true
+          ],
+          "probability": 0.8
+        }
+      ],
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "stringInBooleanDomain",
+      "kind": "joint",
+      "variables": [
+        "a"
+      ],
+      "rows": [
+        {
+          "values": [
+            "true"
+          ],
+          "probability": 0.5
+        },
+        {
+          "values": [
+            false
+          ],
+          "probability": 0.5
+        }
+      ],
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "intInBooleanDomain",
+      "kind": "joint",
+      "variables": [
+        "a"
+      ],
+      "rows": [
+        {
+          "values": [
+            1
+          ],
+          "probability": 0.5
+        },
+        {
+          "values": [
+            0
+          ],
+          "probability": 0.5
+        }
+      ],
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "shortRow",
+      "kind": "joint",
+      "variables": [
+        "a",
+        "b"
+      ],
+      "rows": [
+        {
+          "values": [
+            false
+          ],
+          "probability": 0.25
+        },
+        {
+          "values": [
+            false,
+            true
+          ],
+          "probability": 0.25
+        },
+        {
+          "values": [
+            true,
+            false
+          ],
+          "probability": 0.25
+        },
+        {
+          "values": [
+            true,
+            true
+          ],
+          "probability": 0.25
+        }
+      ],
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "duplicateVariable",
+      "kind": "joint",
+      "variables": [
+        "a",
+        "a"
+      ],
+      "rows": [],
+      "expectError": "OVERLAPPING_VARIABLES"
+    },
+    {
+      "id": "aBern",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 0.8
+    },
+    {
+      "id": "bBern",
+      "kind": "bernoulli",
+      "variable": "b",
+      "probability": 0.6
+    }
+  ],
+  "models": [
+    {
+      "id": "abOnly",
+      "kind": "single",
+      "distribution": "ab"
+    },
+    {
+      "id": "overlap",
+      "kind": "independent",
+      "groups": [
+        "ab",
+        "aBern"
+      ],
+      "reason": "Invalid.",
+      "expectError": "OVERLAPPING_VARIABLES"
+    },
+    {
+      "id": "singleGroup",
+      "kind": "independent",
+      "groups": [
+        "ab"
+      ],
+      "reason": "Invalid.",
+      "expectError": "MISSING_DEPENDENCE"
+    },
+    {
+      "id": "blankReason",
+      "kind": "independent",
+      "groups": [
+        "aBern",
+        "bBern"
+      ],
+      "reason": " ",
+      "expectError": "MISSING_DEPENDENCE"
+    },
+    {
+      "id": "aOnly",
+      "kind": "single",
+      "distribution": "aBern"
+    }
+  ],
+  "cases": [
+    {
+      "id": "missing-variable",
+      "expression": {
+        "kind": "and",
+        "left": "a",
+        "right": "b"
+      },
+      "model": "aOnly",
+      "expectError": "MISSING_VARIABLE"
+    },
+    {
+      "id": "no-model",
+      "expression": "a",
+      "expectError": "MISSING_VARIABLE"
+    },
+    {
+      "id": "limit-exact",
+      "expression": "a",
+      "model": "abOnly",
+      "maxWorlds": 4,
+      "expect": {
+        "probability": 0.8,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "limit-below",
+      "expression": "a",
+      "model": "abOnly",
+      "maxWorlds": 3,
+      "expectError": "WORLD_LIMIT_EXCEEDED"
+    },
+    {
+      "id": "limit-zero",
+      "expression": "a",
+      "model": "abOnly",
+      "maxWorlds": 0,
+      "expectError": "WORLD_LIMIT_EXCEEDED"
+    },
+    {
+      "id": "limit-negative",
+      "expression": "a",
+      "model": "abOnly",
+      "maxWorlds": -1,
+      "expectError": "WORLD_LIMIT_EXCEEDED"
+    },
+    {
+      "id": "limit-fractional",
+      "expression": "a",
+      "model": "abOnly",
+      "maxWorlds": 1.5,
+      "expectError": "WORLD_LIMIT_EXCEEDED"
+    },
+    {
+      "id": "limit-one",
+      "expression": "a",
+      "model": "abOnly",
+      "maxWorlds": 1,
+      "expectError": "WORLD_LIMIT_EXCEEDED"
+    },
+    {
+      "id": "limit-two",
+      "expression": "a",
+      "model": "abOnly",
+      "maxWorlds": 2,
+      "expectError": "WORLD_LIMIT_EXCEEDED"
+    }
+  ]
+}

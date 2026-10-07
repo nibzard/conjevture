@@ -1,0 +1,308 @@
+{
+  "id": "independence",
+  "description": "Independent groups with recorded reasons and marginals.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    },
+    {
+      "id": "b",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "repeat"
+    },
+    {
+      "id": "c",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "resolved"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "ab",
+      "kind": "joint",
+      "variables": [
+        "a",
+        "b"
+      ],
+      "rows": [
+        {
+          "values": [
+            false,
+            false
+          ],
+          "probability": 0.1
+        },
+        {
+          "values": [
+            true,
+            false
+          ],
+          "probability": 0.3
+        },
+        {
+          "values": [
+            false,
+            true
+          ],
+          "probability": 0.1
+        },
+        {
+          "values": [
+            true,
+            true
+          ],
+          "probability": 0.5
+        }
+      ]
+    },
+    {
+      "id": "cBern",
+      "kind": "bernoulli",
+      "variable": "c",
+      "probability": 0.1
+    },
+    {
+      "id": "aBern",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 0.8
+    },
+    {
+      "id": "bBern",
+      "kind": "bernoulli",
+      "variable": "b",
+      "probability": 0.6
+    }
+  ],
+  "models": [
+    {
+      "id": "withResolved",
+      "kind": "independent",
+      "groups": [
+        "ab",
+        "cBern"
+      ],
+      "reason": "Illustrative assumption."
+    },
+    {
+      "id": "marginals",
+      "kind": "independent",
+      "groups": [
+        "aBern",
+        "bBern"
+      ],
+      "reason": "Test independence."
+    }
+  ],
+  "cases": [
+    {
+      "id": "priority",
+      "expression": {
+        "kind": "and",
+        "left": {
+          "kind": "or",
+          "left": "a",
+          "right": "b"
+        },
+        "right": {
+          "kind": "not",
+          "operand": "c"
+        }
+      },
+      "model": "withResolved",
+      "expect": {
+        "probability": 0.81,
+        "worlds": 8,
+        "assumptions": [
+          {
+            "groups": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "c"
+              ]
+            ],
+            "reason": "Illustrative assumption."
+          }
+        ],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "variables": [
+              "c"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "unused-group-variables-still-counted",
+      "expression": "a",
+      "model": "withResolved",
+      "expect": {
+        "probability": 0.8,
+        "worlds": 8,
+        "assumptions": [
+          {
+            "groups": [
+              [
+                "a",
+                "b"
+              ],
+              [
+                "c"
+              ]
+            ],
+            "reason": "Illustrative assumption."
+          }
+        ],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ]
+          },
+          {
+            "variables": [
+              "c"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "marginal-and",
+      "expression": {
+        "kind": "and",
+        "left": "a",
+        "right": "b"
+      },
+      "model": "marginals",
+      "expect": {
+        "probability": 0.48,
+        "worlds": 4,
+        "assumptions": [
+          {
+            "groups": [
+              [
+                "a"
+              ],
+              [
+                "b"
+              ]
+            ],
+            "reason": "Test independence."
+          }
+        ],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          },
+          {
+            "variables": [
+              "b"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "marginal-or",
+      "expression": {
+        "kind": "or",
+        "left": "a",
+        "right": "b"
+      },
+      "model": "marginals",
+      "expect": {
+        "probability": 0.92,
+        "worlds": 4,
+        "assumptions": [
+          {
+            "groups": [
+              [
+                "a"
+              ],
+              [
+                "b"
+              ]
+            ],
+            "reason": "Test independence."
+          }
+        ],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          },
+          {
+            "variables": [
+              "b"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "marginal-xor",
+      "expression": {
+        "kind": "xor",
+        "left": "a",
+        "right": "b"
+      },
+      "model": "marginals",
+      "expect": {
+        "probability": 0.44,
+        "worlds": 4,
+        "assumptions": [
+          {
+            "groups": [
+              [
+                "a"
+              ],
+              [
+                "b"
+              ]
+            ],
+            "reason": "Test independence."
+          }
+        ],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          },
+          {
+            "variables": [
+              "b"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

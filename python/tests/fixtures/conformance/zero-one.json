@@ -1,0 +1,121 @@
+{
+  "id": "zero-one",
+  "description": "Probabilities of zero and one, including zero-probability rows.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "never",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 0
+    },
+    {
+      "id": "always",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 1
+    }
+  ],
+  "models": [
+    {
+      "id": "neverOnly",
+      "kind": "single",
+      "distribution": "never"
+    },
+    {
+      "id": "alwaysOnly",
+      "kind": "single",
+      "distribution": "always"
+    }
+  ],
+  "cases": [
+    {
+      "id": "zero",
+      "expression": "a",
+      "model": "neverOnly",
+      "expect": {
+        "probability": 0.0,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "not-always",
+      "expression": {
+        "kind": "not",
+        "operand": "a"
+      },
+      "model": "alwaysOnly",
+      "expect": {
+        "probability": 0.0,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "always",
+      "expression": "a",
+      "model": "alwaysOnly",
+      "expect": {
+        "probability": 1.0,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "not-never",
+      "expression": {
+        "kind": "not",
+        "operand": "a"
+      },
+      "model": "neverOnly",
+      "expect": {
+        "probability": 1.0,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

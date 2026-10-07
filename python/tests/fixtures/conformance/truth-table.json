@@ -1,0 +1,159 @@
+{
+  "id": "truth-table",
+  "description": "Direct truth-table agreement on a correlated mixed domain.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "case",
+      "revision": "1"
+    }
+  ],
+  "variables": [
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "a"
+    },
+    {
+      "id": "b",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "b"
+    },
+    {
+      "id": "route",
+      "scope": "s",
+      "kind": "categorical",
+      "name": "route",
+      "labels": [
+        "billing",
+        "technical"
+      ]
+    }
+  ],
+  "distributions": [
+    {
+      "id": "mixed",
+      "kind": "joint",
+      "variables": [
+        "a",
+        "b",
+        "route"
+      ],
+      "rows": [
+        {
+          "values": [
+            false,
+            false,
+            "billing"
+          ],
+          "probability": 0.03
+        },
+        {
+          "values": [
+            false,
+            false,
+            "technical"
+          ],
+          "probability": 0.07
+        },
+        {
+          "values": [
+            false,
+            true,
+            "billing"
+          ],
+          "probability": 0.11
+        },
+        {
+          "values": [
+            false,
+            true,
+            "technical"
+          ],
+          "probability": 0.09
+        },
+        {
+          "values": [
+            true,
+            false,
+            "billing"
+          ],
+          "probability": 0.13
+        },
+        {
+          "values": [
+            true,
+            false,
+            "technical"
+          ],
+          "probability": 0.17
+        },
+        {
+          "values": [
+            true,
+            true,
+            "billing"
+          ],
+          "probability": 0.19
+        },
+        {
+          "values": [
+            true,
+            true,
+            "technical"
+          ],
+          "probability": 0.21
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "id": "mixedOnly",
+      "kind": "single",
+      "distribution": "mixed"
+    }
+  ],
+  "cases": [
+    {
+      "id": "mixed-circuit",
+      "expression": {
+        "kind": "xor",
+        "left": {
+          "kind": "and",
+          "left": {
+            "kind": "or",
+            "left": "a",
+            "right": "b"
+          },
+          "right": {
+            "kind": "equals",
+            "variable": "route",
+            "value": "billing"
+          }
+        },
+        "right": {
+          "kind": "not",
+          "operand": "a"
+        }
+      },
+      "model": "mixedOnly",
+      "expect": {
+        "probability": 0.51,
+        "worlds": 8,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b",
+              "route"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

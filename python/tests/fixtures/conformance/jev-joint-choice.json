@@ -1,0 +1,300 @@
+{
+  "id": "jev-joint-choice",
+  "description": "Joint Choice mapping to one coherent joint distribution.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "urgent",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    },
+    {
+      "id": "repeat",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "repeat"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "okJoint",
+      "kind": "jev-joint-choice",
+      "variables": [
+        "urgent",
+        "repeat"
+      ],
+      "mapping": {
+        "neither": [
+          false,
+          false
+        ],
+        "urgentOnly": [
+          true,
+          false
+        ],
+        "repeatOnly": [
+          false,
+          true
+        ],
+        "both": [
+          true,
+          true
+        ]
+      },
+      "answer": {
+        "type": "choice",
+        "choice": "both",
+        "confidence": 0.1,
+        "probabilities": {
+          "neither": 0.1,
+          "urgentOnly": 0.3,
+          "repeatOnly": 0.1,
+          "both": 0.5
+        }
+      },
+      "provenance": {
+        "requestId": "request:9"
+      }
+    },
+    {
+      "id": "incompleteMapping",
+      "kind": "jev-joint-choice",
+      "variables": [
+        "urgent",
+        "repeat"
+      ],
+      "mapping": {
+        "yes": [
+          true,
+          true
+        ]
+      },
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "yes": 1
+        }
+      },
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "duplicateMapping",
+      "kind": "jev-joint-choice",
+      "variables": [
+        "urgent",
+        "repeat"
+      ],
+      "mapping": {
+        "first": [
+          true,
+          true
+        ],
+        "second": [
+          true,
+          true
+        ]
+      },
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "first": 0.5,
+          "second": 0.5
+        }
+      },
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "wrongTypeMapping",
+      "kind": "jev-joint-choice",
+      "variables": [
+        "urgent",
+        "repeat"
+      ],
+      "mapping": {
+        "no": [
+          "false",
+          "false"
+        ],
+        "yes": [
+          true,
+          true
+        ]
+      },
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "no": 0.5,
+          "yes": 0.5
+        }
+      },
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "extraProbabilityKey",
+      "kind": "jev-joint-choice",
+      "variables": [
+        "urgent",
+        "repeat"
+      ],
+      "mapping": {
+        "neither": [
+          false,
+          false
+        ],
+        "urgentOnly": [
+          true,
+          false
+        ],
+        "repeatOnly": [
+          false,
+          true
+        ],
+        "both": [
+          true,
+          true
+        ]
+      },
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "neither": 0.1,
+          "urgentOnly": 0.3,
+          "repeatOnly": 0.1,
+          "both": 0.5,
+          "extra": 0.0
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "missingProbabilityKey",
+      "kind": "jev-joint-choice",
+      "variables": [
+        "urgent",
+        "repeat"
+      ],
+      "mapping": {
+        "neither": [
+          false,
+          false
+        ],
+        "urgentOnly": [
+          true,
+          false
+        ],
+        "repeatOnly": [
+          false,
+          true
+        ],
+        "both": [
+          true,
+          true
+        ]
+      },
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "neither": 0.1,
+          "urgentOnly": 0.3,
+          "repeatOnly": 0.1,
+          "both2": 0.5
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    }
+  ],
+  "models": [
+    {
+      "id": "okOnly",
+      "kind": "single",
+      "distribution": "okJoint"
+    }
+  ],
+  "cases": [
+    {
+      "id": "joint-and",
+      "expression": {
+        "kind": "and",
+        "left": "urgent",
+        "right": "repeat"
+      },
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.5,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "urgent",
+              "repeat"
+            ],
+            "provenance": {
+              "source": "jev",
+              "requestId": "request:9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "joint-or",
+      "expression": {
+        "kind": "or",
+        "left": "urgent",
+        "right": "repeat"
+      },
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.9,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "urgent",
+              "repeat"
+            ],
+            "provenance": {
+              "source": "jev",
+              "requestId": "request:9"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "joint-xor",
+      "expression": {
+        "kind": "xor",
+        "left": "urgent",
+        "right": "repeat"
+      },
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.4,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "urgent",
+              "repeat"
+            ],
+            "provenance": {
+              "source": "jev",
+              "requestId": "request:9"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

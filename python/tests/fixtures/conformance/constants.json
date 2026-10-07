@@ -1,0 +1,109 @@
+{
+  "id": "constants",
+  "description": "Constants evaluate without a model or alongside one.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "aBern",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 0.25
+    }
+  ],
+  "models": [
+    {
+      "id": "aOnly",
+      "kind": "single",
+      "distribution": "aBern"
+    }
+  ],
+  "cases": [
+    {
+      "id": "constant-true",
+      "expression": {
+        "kind": "constant",
+        "value": true
+      },
+      "expect": {
+        "probability": 1.0,
+        "worlds": 1,
+        "assumptions": [],
+        "sources": []
+      }
+    },
+    {
+      "id": "not-constant",
+      "expression": {
+        "kind": "not",
+        "operand": {
+          "kind": "constant",
+          "value": true
+        }
+      },
+      "expect": {
+        "probability": 0.0,
+        "worlds": 1,
+        "assumptions": [],
+        "sources": []
+      }
+    },
+    {
+      "id": "xor-constants",
+      "expression": {
+        "kind": "xor",
+        "left": {
+          "kind": "constant",
+          "value": true
+        },
+        "right": {
+          "kind": "constant",
+          "value": false
+        }
+      },
+      "expect": {
+        "probability": 1.0,
+        "worlds": 1,
+        "assumptions": [],
+        "sources": []
+      }
+    },
+    {
+      "id": "or-constant-false",
+      "expression": {
+        "kind": "or",
+        "left": "a",
+        "right": {
+          "kind": "constant",
+          "value": false
+        }
+      },
+      "model": "aOnly",
+      "expect": {
+        "probability": 0.25,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

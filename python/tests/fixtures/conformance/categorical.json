@@ -1,0 +1,191 @@
+{
+  "id": "categorical",
+  "description": "Categorical exclusivity and domain checks.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "1"
+    }
+  ],
+  "variables": [
+    {
+      "id": "route",
+      "scope": "s",
+      "kind": "categorical",
+      "name": "route",
+      "labels": [
+        "billing",
+        "technical",
+        "other"
+      ]
+    },
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "routeDist",
+      "kind": "joint",
+      "variables": [
+        "route"
+      ],
+      "rows": [
+        {
+          "values": [
+            "billing"
+          ],
+          "probability": 0.5
+        },
+        {
+          "values": [
+            "technical"
+          ],
+          "probability": 0.3
+        },
+        {
+          "values": [
+            "other"
+          ],
+          "probability": 0.2
+        }
+      ]
+    },
+    {
+      "id": "aBern",
+      "kind": "bernoulli",
+      "variable": "a",
+      "probability": 0.25
+    }
+  ],
+  "models": [
+    {
+      "id": "routeOnly",
+      "kind": "single",
+      "distribution": "routeDist"
+    },
+    {
+      "id": "aOnly",
+      "kind": "single",
+      "distribution": "aBern"
+    }
+  ],
+  "cases": [
+    {
+      "id": "labels-mutually-exclusive",
+      "expression": {
+        "kind": "and",
+        "left": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "billing"
+        },
+        "right": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "technical"
+        }
+      },
+      "model": "routeOnly",
+      "expect": {
+        "probability": 0.0,
+        "worlds": 3,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "route"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "labels-union",
+      "expression": {
+        "kind": "or",
+        "left": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "billing"
+        },
+        "right": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "technical"
+        }
+      },
+      "model": "routeOnly",
+      "expect": {
+        "probability": 0.8,
+        "worlds": 3,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "route"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "not-label",
+      "expression": {
+        "kind": "not",
+        "operand": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "other"
+        }
+      },
+      "model": "routeOnly",
+      "expect": {
+        "probability": 0.8,
+        "worlds": 3,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "route"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "undeclared-label",
+      "expression": {
+        "kind": "equals",
+        "variable": "route",
+        "value": "sales"
+      },
+      "model": "routeOnly",
+      "expectError": "INVALID_VARIABLE"
+    },
+    {
+      "id": "int-in-boolean-domain",
+      "expression": {
+        "kind": "equals",
+        "variable": "a",
+        "value": 1
+      },
+      "model": "aOnly",
+      "expectError": "INVALID_VARIABLE"
+    },
+    {
+      "id": "string-in-boolean-domain",
+      "expression": {
+        "kind": "equals",
+        "variable": "a",
+        "value": "true"
+      },
+      "model": "aOnly",
+      "expectError": "INVALID_VARIABLE"
+    }
+  ]
+}

@@ -1,0 +1,753 @@
+{
+  "id": "world-limit",
+  "description": "The default limit counts every assignment before enumeration.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "v0",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v0"
+    },
+    {
+      "id": "v1",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v1"
+    },
+    {
+      "id": "v2",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v2"
+    },
+    {
+      "id": "v3",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v3"
+    },
+    {
+      "id": "v4",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v4"
+    },
+    {
+      "id": "v5",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v5"
+    },
+    {
+      "id": "v6",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v6"
+    },
+    {
+      "id": "v7",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v7"
+    },
+    {
+      "id": "v8",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v8"
+    },
+    {
+      "id": "v9",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v9"
+    },
+    {
+      "id": "v10",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v10"
+    },
+    {
+      "id": "v11",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v11"
+    },
+    {
+      "id": "v12",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v12"
+    },
+    {
+      "id": "v13",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v13"
+    },
+    {
+      "id": "v14",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v14"
+    },
+    {
+      "id": "v15",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v15"
+    },
+    {
+      "id": "v16",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "v16"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "b0",
+      "kind": "bernoulli",
+      "variable": "v0",
+      "probability": 0.5
+    },
+    {
+      "id": "b1",
+      "kind": "bernoulli",
+      "variable": "v1",
+      "probability": 0.5
+    },
+    {
+      "id": "b2",
+      "kind": "bernoulli",
+      "variable": "v2",
+      "probability": 0.5
+    },
+    {
+      "id": "b3",
+      "kind": "bernoulli",
+      "variable": "v3",
+      "probability": 0.5
+    },
+    {
+      "id": "b4",
+      "kind": "bernoulli",
+      "variable": "v4",
+      "probability": 0.5
+    },
+    {
+      "id": "b5",
+      "kind": "bernoulli",
+      "variable": "v5",
+      "probability": 0.5
+    },
+    {
+      "id": "b6",
+      "kind": "bernoulli",
+      "variable": "v6",
+      "probability": 0.5
+    },
+    {
+      "id": "b7",
+      "kind": "bernoulli",
+      "variable": "v7",
+      "probability": 0.5
+    },
+    {
+      "id": "b8",
+      "kind": "bernoulli",
+      "variable": "v8",
+      "probability": 0.5
+    },
+    {
+      "id": "b9",
+      "kind": "bernoulli",
+      "variable": "v9",
+      "probability": 0.5
+    },
+    {
+      "id": "b10",
+      "kind": "bernoulli",
+      "variable": "v10",
+      "probability": 0.5
+    },
+    {
+      "id": "b11",
+      "kind": "bernoulli",
+      "variable": "v11",
+      "probability": 0.5
+    },
+    {
+      "id": "b12",
+      "kind": "bernoulli",
+      "variable": "v12",
+      "probability": 0.5
+    },
+    {
+      "id": "b13",
+      "kind": "bernoulli",
+      "variable": "v13",
+      "probability": 0.5
+    },
+    {
+      "id": "b14",
+      "kind": "bernoulli",
+      "variable": "v14",
+      "probability": 0.5
+    },
+    {
+      "id": "b15",
+      "kind": "bernoulli",
+      "variable": "v15",
+      "probability": 0.5
+    },
+    {
+      "id": "b16",
+      "kind": "bernoulli",
+      "variable": "v16",
+      "probability": 0.5
+    }
+  ],
+  "models": [
+    {
+      "id": "sixteen",
+      "kind": "independent",
+      "groups": [
+        "b0",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11",
+        "b12",
+        "b13",
+        "b14",
+        "b15"
+      ],
+      "reason": "Limit boundary."
+    },
+    {
+      "id": "seventeen",
+      "kind": "independent",
+      "groups": [
+        "b0",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8",
+        "b9",
+        "b10",
+        "b11",
+        "b12",
+        "b13",
+        "b14",
+        "b15",
+        "b16"
+      ],
+      "reason": "Limit boundary."
+    }
+  ],
+  "cases": [
+    {
+      "id": "default-limit-boundary",
+      "expression": {
+        "kind": "or",
+        "left": "v0",
+        "right": {
+          "kind": "or",
+          "left": "v1",
+          "right": {
+            "kind": "or",
+            "left": "v2",
+            "right": {
+              "kind": "or",
+              "left": "v3",
+              "right": {
+                "kind": "or",
+                "left": "v4",
+                "right": {
+                  "kind": "or",
+                  "left": "v5",
+                  "right": {
+                    "kind": "or",
+                    "left": "v6",
+                    "right": {
+                      "kind": "or",
+                      "left": "v7",
+                      "right": {
+                        "kind": "or",
+                        "left": "v8",
+                        "right": {
+                          "kind": "or",
+                          "left": "v9",
+                          "right": {
+                            "kind": "or",
+                            "left": "v10",
+                            "right": {
+                              "kind": "or",
+                              "left": "v11",
+                              "right": {
+                                "kind": "or",
+                                "left": "v12",
+                                "right": {
+                                  "kind": "or",
+                                  "left": "v13",
+                                  "right": {
+                                    "kind": "or",
+                                    "left": "v14",
+                                    "right": "v15"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "model": "sixteen",
+      "expect": {
+        "probability": 0.9999847412109375,
+        "worlds": 65536,
+        "assumptions": [
+          {
+            "groups": [
+              [
+                "v0"
+              ],
+              [
+                "v1"
+              ],
+              [
+                "v2"
+              ],
+              [
+                "v3"
+              ],
+              [
+                "v4"
+              ],
+              [
+                "v5"
+              ],
+              [
+                "v6"
+              ],
+              [
+                "v7"
+              ],
+              [
+                "v8"
+              ],
+              [
+                "v9"
+              ],
+              [
+                "v10"
+              ],
+              [
+                "v11"
+              ],
+              [
+                "v12"
+              ],
+              [
+                "v13"
+              ],
+              [
+                "v14"
+              ],
+              [
+                "v15"
+              ]
+            ],
+            "reason": "Limit boundary."
+          }
+        ],
+        "sources": [
+          {
+            "variables": [
+              "v0"
+            ]
+          },
+          {
+            "variables": [
+              "v1"
+            ]
+          },
+          {
+            "variables": [
+              "v2"
+            ]
+          },
+          {
+            "variables": [
+              "v3"
+            ]
+          },
+          {
+            "variables": [
+              "v4"
+            ]
+          },
+          {
+            "variables": [
+              "v5"
+            ]
+          },
+          {
+            "variables": [
+              "v6"
+            ]
+          },
+          {
+            "variables": [
+              "v7"
+            ]
+          },
+          {
+            "variables": [
+              "v8"
+            ]
+          },
+          {
+            "variables": [
+              "v9"
+            ]
+          },
+          {
+            "variables": [
+              "v10"
+            ]
+          },
+          {
+            "variables": [
+              "v11"
+            ]
+          },
+          {
+            "variables": [
+              "v12"
+            ]
+          },
+          {
+            "variables": [
+              "v13"
+            ]
+          },
+          {
+            "variables": [
+              "v14"
+            ]
+          },
+          {
+            "variables": [
+              "v15"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "explicit-limit",
+      "expression": {
+        "kind": "or",
+        "left": "v0",
+        "right": {
+          "kind": "or",
+          "left": "v1",
+          "right": {
+            "kind": "or",
+            "left": "v2",
+            "right": {
+              "kind": "or",
+              "left": "v3",
+              "right": {
+                "kind": "or",
+                "left": "v4",
+                "right": {
+                  "kind": "or",
+                  "left": "v5",
+                  "right": {
+                    "kind": "or",
+                    "left": "v6",
+                    "right": {
+                      "kind": "or",
+                      "left": "v7",
+                      "right": {
+                        "kind": "or",
+                        "left": "v8",
+                        "right": {
+                          "kind": "or",
+                          "left": "v9",
+                          "right": {
+                            "kind": "or",
+                            "left": "v10",
+                            "right": {
+                              "kind": "or",
+                              "left": "v11",
+                              "right": {
+                                "kind": "or",
+                                "left": "v12",
+                                "right": {
+                                  "kind": "or",
+                                  "left": "v13",
+                                  "right": {
+                                    "kind": "or",
+                                    "left": "v14",
+                                    "right": "v15"
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "model": "sixteen",
+      "maxWorlds": 65536,
+      "expect": {
+        "probability": 0.9999847412109375,
+        "worlds": 65536,
+        "assumptions": [
+          {
+            "groups": [
+              [
+                "v0"
+              ],
+              [
+                "v1"
+              ],
+              [
+                "v2"
+              ],
+              [
+                "v3"
+              ],
+              [
+                "v4"
+              ],
+              [
+                "v5"
+              ],
+              [
+                "v6"
+              ],
+              [
+                "v7"
+              ],
+              [
+                "v8"
+              ],
+              [
+                "v9"
+              ],
+              [
+                "v10"
+              ],
+              [
+                "v11"
+              ],
+              [
+                "v12"
+              ],
+              [
+                "v13"
+              ],
+              [
+                "v14"
+              ],
+              [
+                "v15"
+              ]
+            ],
+            "reason": "Limit boundary."
+          }
+        ],
+        "sources": [
+          {
+            "variables": [
+              "v0"
+            ]
+          },
+          {
+            "variables": [
+              "v1"
+            ]
+          },
+          {
+            "variables": [
+              "v2"
+            ]
+          },
+          {
+            "variables": [
+              "v3"
+            ]
+          },
+          {
+            "variables": [
+              "v4"
+            ]
+          },
+          {
+            "variables": [
+              "v5"
+            ]
+          },
+          {
+            "variables": [
+              "v6"
+            ]
+          },
+          {
+            "variables": [
+              "v7"
+            ]
+          },
+          {
+            "variables": [
+              "v8"
+            ]
+          },
+          {
+            "variables": [
+              "v9"
+            ]
+          },
+          {
+            "variables": [
+              "v10"
+            ]
+          },
+          {
+            "variables": [
+              "v11"
+            ]
+          },
+          {
+            "variables": [
+              "v12"
+            ]
+          },
+          {
+            "variables": [
+              "v13"
+            ]
+          },
+          {
+            "variables": [
+              "v14"
+            ]
+          },
+          {
+            "variables": [
+              "v15"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "seventeen-exceeds-default",
+      "expression": {
+        "kind": "or",
+        "left": "v0",
+        "right": {
+          "kind": "or",
+          "left": "v1",
+          "right": {
+            "kind": "or",
+            "left": "v2",
+            "right": {
+              "kind": "or",
+              "left": "v3",
+              "right": {
+                "kind": "or",
+                "left": "v4",
+                "right": {
+                  "kind": "or",
+                  "left": "v5",
+                  "right": {
+                    "kind": "or",
+                    "left": "v6",
+                    "right": {
+                      "kind": "or",
+                      "left": "v7",
+                      "right": {
+                        "kind": "or",
+                        "left": "v8",
+                        "right": {
+                          "kind": "or",
+                          "left": "v9",
+                          "right": {
+                            "kind": "or",
+                            "left": "v10",
+                            "right": {
+                              "kind": "or",
+                              "left": "v11",
+                              "right": {
+                                "kind": "or",
+                                "left": "v12",
+                                "right": {
+                                  "kind": "or",
+                                  "left": "v13",
+                                  "right": {
+                                    "kind": "or",
+                                    "left": "v14",
+                                    "right": {
+                                      "kind": "or",
+                                      "left": "v15",
+                                      "right": "v16"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "model": "seventeen",
+      "expectError": "WORLD_LIMIT_EXCEEDED"
+    }
+  ]
+}

@@ -1,0 +1,340 @@
+{
+  "id": "jev-choice",
+  "description": "Choice conversion with exact label coverage.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "message:1",
+      "revision": "1"
+    }
+  ],
+  "variables": [
+    {
+      "id": "route",
+      "scope": "s",
+      "kind": "categorical",
+      "name": "route",
+      "labels": [
+        "billing",
+        "technical",
+        "other"
+      ]
+    },
+    {
+      "id": "route2",
+      "scope": "s",
+      "kind": "categorical",
+      "name": "route2",
+      "labels": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "id": "proto",
+      "scope": "s",
+      "kind": "categorical",
+      "name": "proto",
+      "labels": [
+        "__proto__",
+        "constructor"
+      ]
+    }
+  ],
+  "distributions": [
+    {
+      "id": "okChoice",
+      "kind": "jev-choice",
+      "variable": "route",
+      "answer": {
+        "type": "choice",
+        "choice": "billing",
+        "confidence": 0.05,
+        "probabilities": {
+          "billing": 0.6,
+          "technical": 0.3,
+          "other": 0.1
+        }
+      },
+      "provenance": {
+        "questionId": "route"
+      }
+    },
+    {
+      "id": "protoChoice",
+      "kind": "jev-choice",
+      "variable": "proto",
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "__proto__": 0.4,
+          "constructor": 0.6
+        }
+      }
+    },
+    {
+      "id": "nullAnswer",
+      "kind": "jev-choice",
+      "variable": "route",
+      "answer": null,
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "emptyAnswer",
+      "kind": "jev-choice",
+      "variable": "route",
+      "answer": {},
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "arrayAnswer",
+      "kind": "jev-choice",
+      "variable": "route",
+      "answer": [],
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "nullProbabilities",
+      "kind": "jev-choice",
+      "variable": "route",
+      "answer": {
+        "type": "choice",
+        "probabilities": null
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "arrayProbabilities",
+      "kind": "jev-choice",
+      "variable": "route",
+      "answer": {
+        "type": "choice",
+        "probabilities": [
+          0.5,
+          0.5
+        ]
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "missingLabel",
+      "kind": "jev-choice",
+      "variable": "route2",
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "a": 1
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "wrongLabel",
+      "kind": "jev-choice",
+      "variable": "route2",
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "a": 0.5,
+          "c": 0.5
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "extraLabel",
+      "kind": "jev-choice",
+      "variable": "route2",
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "a": 0.5,
+          "b": 0.4,
+          "c": 0.1
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "stringProbability",
+      "kind": "jev-choice",
+      "variable": "route2",
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "a": "0.5",
+          "b": 0.5
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "booleanProbability",
+      "kind": "jev-choice",
+      "variable": "route2",
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "a": true,
+          "b": 0.5
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "wrongType",
+      "kind": "jev-choice",
+      "variable": "route2",
+      "answer": {
+        "type": "noul",
+        "probabilities": {
+          "a": 0.5,
+          "b": 0.5
+        }
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "probabilitiesDoNotSum",
+      "kind": "jev-choice",
+      "variable": "route2",
+      "answer": {
+        "type": "choice",
+        "probabilities": {
+          "a": 0.5,
+          "b": 0.6
+        }
+      },
+      "expectError": "INVALID_DISTRIBUTION"
+    }
+  ],
+  "models": [
+    {
+      "id": "okOnly",
+      "kind": "single",
+      "distribution": "okChoice"
+    },
+    {
+      "id": "protoOnly",
+      "kind": "single",
+      "distribution": "protoChoice"
+    }
+  ],
+  "cases": [
+    {
+      "id": "selected-label-probability",
+      "expression": {
+        "kind": "equals",
+        "variable": "route",
+        "value": "billing"
+      },
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.6,
+        "worlds": 3,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "route"
+            ],
+            "provenance": {
+              "source": "jev",
+              "questionId": "route"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "label-union",
+      "expression": {
+        "kind": "or",
+        "left": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "billing"
+        },
+        "right": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "technical"
+        }
+      },
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.9,
+        "worlds": 3,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "route"
+            ],
+            "provenance": {
+              "source": "jev",
+              "questionId": "route"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "label-intersection",
+      "expression": {
+        "kind": "and",
+        "left": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "billing"
+        },
+        "right": {
+          "kind": "equals",
+          "variable": "route",
+          "value": "technical"
+        }
+      },
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.0,
+        "worlds": 3,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "route"
+            ],
+            "provenance": {
+              "source": "jev",
+              "questionId": "route"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "prototype-labels",
+      "expression": {
+        "kind": "equals",
+        "variable": "proto",
+        "value": "__proto__"
+      },
+      "model": "protoOnly",
+      "expect": {
+        "probability": 0.4,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "proto"
+            ],
+            "provenance": {
+              "source": "jev"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

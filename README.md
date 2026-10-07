@@ -44,6 +44,23 @@ Set `TYPESAFE_API_KEY` in the server environment for live calls and custom repor
 Without a key, play with the included recorded Jev responses. Replays are labeled and
 require matching questions and evidence. See the [design and variations](examples/signal-workshop/CONCEPTS.md).
 
+## Python version
+
+A native Python package with the same probability semantics lives in
+[python/](python/README.md). It has zero runtime dependencies, supports
+Python 3.11 or later, and ships type annotations. Both implementations run
+the same shared conformance fixtures, so they stay compatible:
+
+```sh
+cd python
+python -m venv .venv
+.venv/bin/pip install -e ".[dev]"
+.venv/bin/pytest
+```
+
+See the [Python guide](docs/python-guide.md) for the API mapping and the
+syntax differences, such as `and_()` in place of the `and` keyword.
+
 ## A first circuit
 
 Create a variable, give it a probability, and evaluate a rule:
@@ -89,6 +106,7 @@ application.
 | Work with categories | [Categorical variables](docs/guide.md#use-categorical-variables) |
 | Use Jev predictions | [Jev converters](docs/guide.md#convert-jev-answers) |
 | Inspect results and errors | [Evaluation and validation](docs/guide.md#evaluation-and-validation) |
+| Use the Python package | [Python guide](docs/python-guide.md) |
 | Run complete examples | [Support ticket](examples/support-ticket.ts) and [routing](examples/routing.ts) |
 
 ## Limits

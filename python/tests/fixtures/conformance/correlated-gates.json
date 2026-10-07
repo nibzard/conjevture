@@ -1,0 +1,225 @@
+{
+  "id": "correlated-gates",
+  "description": "Gate probabilities under the supplied joint table.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    },
+    {
+      "id": "b",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "repeat"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "ab",
+      "kind": "joint",
+      "variables": [
+        "a",
+        "b"
+      ],
+      "rows": [
+        {
+          "values": [
+            false,
+            false
+          ],
+          "probability": 0.1
+        },
+        {
+          "values": [
+            true,
+            false
+          ],
+          "probability": 0.3
+        },
+        {
+          "values": [
+            false,
+            true
+          ],
+          "probability": 0.1
+        },
+        {
+          "values": [
+            true,
+            true
+          ],
+          "probability": 0.5
+        }
+      ],
+      "provenance": {
+        "source": "manual",
+        "questionId": "priority:1"
+      }
+    }
+  ],
+  "models": [
+    {
+      "id": "abOnly",
+      "kind": "single",
+      "distribution": "ab"
+    }
+  ],
+  "cases": [
+    {
+      "id": "marginal-a",
+      "expression": "a",
+      "model": "abOnly",
+      "expect": {
+        "probability": 0.8,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ],
+            "provenance": {
+              "source": "manual",
+              "questionId": "priority:1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "marginal-b",
+      "expression": "b",
+      "model": "abOnly",
+      "expect": {
+        "probability": 0.6,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ],
+            "provenance": {
+              "source": "manual",
+              "questionId": "priority:1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "and",
+      "expression": {
+        "kind": "and",
+        "left": "a",
+        "right": "b"
+      },
+      "model": "abOnly",
+      "expect": {
+        "probability": 0.5,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ],
+            "provenance": {
+              "source": "manual",
+              "questionId": "priority:1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "or",
+      "expression": {
+        "kind": "or",
+        "left": "a",
+        "right": "b"
+      },
+      "model": "abOnly",
+      "expect": {
+        "probability": 0.9,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ],
+            "provenance": {
+              "source": "manual",
+              "questionId": "priority:1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "xor",
+      "expression": {
+        "kind": "xor",
+        "left": "a",
+        "right": "b"
+      },
+      "model": "abOnly",
+      "expect": {
+        "probability": 0.4,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ],
+            "provenance": {
+              "source": "manual",
+              "questionId": "priority:1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "not",
+      "expression": {
+        "kind": "not",
+        "operand": "a"
+      },
+      "model": "abOnly",
+      "expect": {
+        "probability": 0.2,
+        "worlds": 4,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a",
+              "b"
+            ],
+            "provenance": {
+              "source": "manual",
+              "questionId": "priority:1"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

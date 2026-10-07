@@ -1,0 +1,202 @@
+{
+  "id": "jev-noul",
+  "description": "Noul conversion, provenance, and malformed answers.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "message:1",
+      "revision": "2"
+    }
+  ],
+  "variables": [
+    {
+      "id": "refund",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "refund"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "okNoul",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {
+        "type": "noul",
+        "noul": 0.85
+      },
+      "provenance": {
+        "model": "fixture-model",
+        "questionId": "refund",
+        "requestId": "request:1"
+      }
+    },
+    {
+      "id": "partialNoul",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {
+        "type": "noul",
+        "noul": 0.5
+      },
+      "provenance": {
+        "model": "fixture-model"
+      }
+    },
+    {
+      "id": "nullAnswer",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": null,
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "emptyAnswer",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {},
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "arrayAnswer",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": [],
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "stringNoul",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {
+        "type": "noul",
+        "noul": "0.5"
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "booleanNoul",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {
+        "type": "noul",
+        "noul": true
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "wrongType",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {
+        "type": "choice",
+        "noul": 0.5
+      },
+      "expectError": "INVALID_JEV_ANSWER"
+    },
+    {
+      "id": "belowRange",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {
+        "type": "noul",
+        "noul": -1
+      },
+      "expectError": "INVALID_DISTRIBUTION"
+    },
+    {
+      "id": "aboveRange",
+      "kind": "jev-noul",
+      "variable": "refund",
+      "answer": {
+        "type": "noul",
+        "noul": 2
+      },
+      "expectError": "INVALID_DISTRIBUTION"
+    }
+  ],
+  "models": [
+    {
+      "id": "okOnly",
+      "kind": "single",
+      "distribution": "okNoul"
+    },
+    {
+      "id": "partialOnly",
+      "kind": "single",
+      "distribution": "partialNoul"
+    }
+  ],
+  "cases": [
+    {
+      "id": "noul-probability-and-provenance",
+      "expression": "refund",
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.85,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "refund"
+            ],
+            "provenance": {
+              "source": "jev",
+              "model": "fixture-model",
+              "questionId": "refund",
+              "requestId": "request:1"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "noul-partial-provenance",
+      "expression": "refund",
+      "model": "partialOnly",
+      "expect": {
+        "probability": 0.5,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "refund"
+            ],
+            "provenance": {
+              "source": "jev",
+              "model": "fixture-model"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "noul-not",
+      "expression": {
+        "kind": "not",
+        "operand": "refund"
+      },
+      "model": "okOnly",
+      "expect": {
+        "probability": 0.15000000000000002,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "refund"
+            ],
+            "provenance": {
+              "source": "jev",
+              "model": "fixture-model",
+              "questionId": "refund",
+              "requestId": "request:1"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

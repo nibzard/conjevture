@@ -1,0 +1,92 @@
+{
+  "id": "normalization",
+  "description": "Totals within 1e-9 of one are normalized by division.",
+  "scopes": [
+    {
+      "id": "s",
+      "stateId": "ticket:42",
+      "revision": "3"
+    }
+  ],
+  "variables": [
+    {
+      "id": "a",
+      "scope": "s",
+      "kind": "boolean",
+      "name": "urgent"
+    }
+  ],
+  "distributions": [
+    {
+      "id": "nearOne",
+      "kind": "joint",
+      "variables": [
+        "a"
+      ],
+      "rows": [
+        {
+          "values": [
+            false
+          ],
+          "probability": 0.4
+        },
+        {
+          "values": [
+            true
+          ],
+          "probability": 0.6000000001
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "id": "nearOneOnly",
+      "kind": "single",
+      "distribution": "nearOne"
+    }
+  ],
+  "cases": [
+    {
+      "id": "tautology",
+      "expression": {
+        "kind": "or",
+        "left": "a",
+        "right": {
+          "kind": "not",
+          "operand": "a"
+        }
+      },
+      "model": "nearOneOnly",
+      "expect": {
+        "probability": 1.0,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "normalized-marginal",
+      "expression": "a",
+      "model": "nearOneOnly",
+      "expect": {
+        "probability": 0.60000000004,
+        "worlds": 2,
+        "assumptions": [],
+        "sources": [
+          {
+            "variables": [
+              "a"
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
