@@ -1,0 +1,12 @@
+Preserve the TypeScript 0.1.0 probability contract in a native Python
+package with zero runtime dependencies. Keep explicit dependence and
+prediction provenance in evaluation results.
+
+Store shared fixtures in python/tests/fixtures/conformance so source
+archives include them. Both language runners use these same fixtures.
+Validate public constructors and dataclasses.replace operations. Keep
+scope metadata read-only and enumerate groups without recursion.
+
+Verified 192 Python tests, 123 TypeScript/game tests, mypy, and Ruff.
+The full Python suite also passes against clean installations of the
+wheel and source archive, including examples and package metadata.
