@@ -1,0 +1,4 @@
+{
+  "extends": "./examples/signal-workshop/tsconfig.json",
+  "exclude": ["src/**/*.ts"]
+}

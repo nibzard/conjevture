@@ -205,12 +205,6 @@ def assume_independent(
                 "assume_independent() needs JointDistribution groups; "
                 f"received {type(group).__name__}."
             )
-    if len(groups_tuple) < 2 or not isinstance(reason, str) or not reason.strip():
-        raise ConjevtureError(
-            "MISSING_DEPENDENCE",
-            "An independence declaration needs at least two groups and a nonempty reason.",
-        )
-    _validate_variables([variable for group in groups_tuple for variable in group.variables])
     assumption = IndependenceAssumption(
         groups=tuple(group.variables for group in groups_tuple),
         reason=reason,
